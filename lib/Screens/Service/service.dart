@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:networktravels/Models/servicemodel.dart';
@@ -65,7 +67,9 @@ class _ServicePageState extends State<ServicePage>
                           onTap: () {
                             Navigator.pop(context);
                           },
-                          child: Icon(Icons.arrow_back)),
+                          child: Platform.isAndroid
+                              ? Icon(Icons.arrow_back)
+                              : Icon(Icons.arrow_back_ios_new)),
                       SizedBox(width: MediaQuery.of(context).size.width * 0.05),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -123,6 +127,12 @@ class _ServicePageState extends State<ServicePage>
               width: MediaQuery.of(context).size.width,
               child: CustomBottom(
                   child: TabBar(
+                      onTap: (index) async {
+                        await Future.delayed(Duration(milliseconds: 300));
+                        if (index == 3) {
+                          Navigator.pushNamed(context, '/filter');
+                        }
+                      },
                       isScrollable: true,
                       labelStyle: GoogleFonts.montserrat(
                           fontSize: 12, fontWeight: FontWeight.w500),

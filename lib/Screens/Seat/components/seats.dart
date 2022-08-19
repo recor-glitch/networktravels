@@ -26,7 +26,11 @@ class _SeatsState extends State<Seats> {
           height: 7,
           width: 25,
           decoration: BoxDecoration(
-              color: widget.isred? Colors.red : widget.isclicked ? green : Colors.white,
+              color: widget.isred
+                  ? Colors.red
+                  : widget.isclicked
+                      ? green
+                      : Colors.white,
               borderRadius: BorderRadius.circular(3),
               border: Border.all(color: blacky, width: 1)),
         );
@@ -36,7 +40,11 @@ class _SeatsState extends State<Seats> {
           height: 20,
           width: 7,
           decoration: BoxDecoration(
-              color: widget.isred? Colors.red : widget.isclicked ? green : Colors.white,
+              color: widget.isred
+                  ? Colors.red
+                  : widget.isclicked
+                      ? green
+                      : Colors.white,
               borderRadius: BorderRadius.circular(3),
               border: Border.all(color: blacky, width: 1)),
         );
@@ -44,25 +52,26 @@ class _SeatsState extends State<Seats> {
     return InkWell(
       onTap: widget.press,
       child: Container(
-        height: 35,
-        width: 33,
-        child: Stack(children: [
-          Container(
-            margin: EdgeInsets.all(3),
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-                color: widget.isred? Colors.red : widget.isclicked ? green : Colors.white,
-                borderRadius: BorderRadius.circular(3),
-                border: Border.all(color: blacky, width: 1)),
-            child: Center(
-                child: Text('${int.parse(widget.index) + 1}',
-                    style: GoogleFonts.montserrat(fontSize: 14))),
-          ),
-          Align(alignment: Alignment.bottomLeft, child: verticalContainer()),
-          Align(alignment: Alignment.bottomRight, child: verticalContainer()),
-          Align(alignment: Alignment.bottomCenter, child: horizontalCOntainer())
-        ]),
-      ),
+          child: Stack(children: [
+        Container(
+          margin: const EdgeInsets.all(3),
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+              color: widget.isred
+                  ? Colors.red
+                  : widget.isclicked
+                      ? green
+                      : Colors.white,
+              borderRadius: BorderRadius.circular(3),
+              border: Border.all(color: blacky, width: 1)),
+          child: Center(
+              child: Text('${int.parse(widget.index) + 1}',
+                  style: GoogleFonts.montserrat(fontSize: 14))),
+        ),
+        Align(alignment: Alignment.bottomLeft, child: verticalContainer()),
+        Align(alignment: Alignment.bottomRight, child: verticalContainer()),
+        Align(alignment: Alignment.bottomCenter, child: horizontalCOntainer())
+      ])),
     );
   }
 }

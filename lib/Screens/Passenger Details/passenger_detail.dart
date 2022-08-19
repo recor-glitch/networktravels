@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:networktravels/Models/servicemodel.dart';
@@ -48,7 +50,9 @@ class PassengerDetailPage extends StatelessWidget {
                           onTap: () {
                             Navigator.pop(context);
                           },
-                          child: Icon(Icons.arrow_back)),
+                          child: Platform.isAndroid
+                              ? Icon(Icons.arrow_back)
+                              : Icon(Icons.arrow_back_ios_new)),
                       SizedBox(width: MediaQuery.of(context).size.width * 0.05),
                       Text('Passenger detail',
                           style: GoogleFonts.montserrat(

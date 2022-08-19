@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -274,7 +276,9 @@ class OrderConfirmation extends StatelessWidget {
                             onTap: () {
                               Navigator.pop(context);
                             },
-                            child: Icon(Icons.arrow_back)),
+                            child: Platform.isAndroid
+                              ? Icon(Icons.arrow_back)
+                              : Icon(Icons.arrow_back_ios_new)),
                         SizedBox(
                             width: MediaQuery.of(context).size.width * 0.05),
                         Text('Order Confirmation',

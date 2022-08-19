@@ -1,14 +1,13 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:networktravels/Provider/filter/bus_filterprovider.dart';
 import 'package:networktravels/Screens/routes.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(MyApp());
-  if (Platform.isAndroid) {
-    SystemChrome.setSystemUIOverlayStyle(
-        const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
-  }
+  SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
 }
 
 class MyApp extends StatelessWidget {
@@ -17,10 +16,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Network Travels',
-      debugShowCheckedModeBanner: false,
-      onGenerateRoute: routes.onGeneratedRoute,
+    return ChangeNotifierProvider(
+      create: (context) => BusFilterProvider(),
+      child: MaterialApp(
+        title: 'Network Travels',
+        debugShowCheckedModeBanner: false,
+        onGenerateRoute: routes.onGeneratedRoute,
+      ),
     );
   }
 }

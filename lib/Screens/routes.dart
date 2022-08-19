@@ -4,6 +4,7 @@ import 'package:networktravels/Screens/Auth/Otp/otp.dart';
 import 'package:networktravels/Screens/Auth/Otp/phone_number.dart';
 import 'package:networktravels/Screens/Auth/Signup/signup.dart';
 import 'package:networktravels/Screens/Fare%20Detail/fare_detail.dart';
+import 'package:networktravels/Screens/Filters/filter_page.dart';
 import 'package:networktravels/Screens/Home/home.dart';
 import 'package:networktravels/Screens/MainPage/main_page.dart';
 import 'package:networktravels/Screens/Onboarding/on_boarding1/on_boarding1.dart';
@@ -27,6 +28,8 @@ class AutoRouter {
         return MaterialPageRoute(builder: (_) => OtpPage());
       case '/phn':
         return MaterialPageRoute(builder: (_) => PhoneNumber());
+      case '/filter':
+        return MaterialPageRoute(builder: (_) => FilterPage());
       case '/home':
         return MaterialPageRoute(builder: (_) => Home());
       case '/service':

@@ -130,18 +130,27 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                 preferredSize:
                     Size.fromHeight(MediaQuery.of(context).size.height * 0.1),
                 child: CustomAppBar(
-                    child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    InkWell(
-                        onTap: () {
-                          scaffoldkey.currentState!.openDrawer();
-                        },
-                        child: Icon(Icons.menu)),
-                    Image(image: AssetImage('assets/logo.png')),
-                    Icon(Icons.notifications)
-                  ],
+                    child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      InkWell(
+                          onTap: () {
+                            scaffoldkey.currentState!.openDrawer();
+                          },
+                          child: Icon(Icons.menu)),
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 10),
+                          child: Image(image: AssetImage('assets/logo.png')),
+                        ),
+                      ),
+                      Icon(Icons.notifications)
+                    ],
+                  ),
                 )))),
         Positioned(
             bottom: 13,

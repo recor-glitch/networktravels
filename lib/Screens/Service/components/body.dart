@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:networktravels/Models/servicemodel.dart';
 import 'package:networktravels/Provider/Service/service_tab.dart';
+import 'package:networktravels/Provider/filter/bus_filterprovider.dart';
 import 'package:networktravels/Screens/Service/components/custom_container.dart';
 import 'package:networktravels/Screens/Service/components/custom_tab.dart';
 import 'package:provider/provider.dart';
@@ -37,6 +39,76 @@ class _ServiceBodyState extends State<ServiceBody>
   void dispose() {
     controller.dispose();
     super.dispose();
+  }
+
+  List getFilteredlist(int index, List buses) {
+    if (index == 0) {
+      return buses.map((e) {
+        if (int.parse(e.departure.substring(9, 11)) < 6) {
+          return e;
+        }
+      }).toList();
+    } else if (index == 1) {
+      return buses.map((e) {
+        if (int.parse(e.departure.substring(9, 11)) > 6 &&
+            int.parse(e.departure.substring(9, 11)) < 12) {
+          return e;
+        }
+      }).toList();
+    } else if (index == 2) {
+      return buses.map((e) {
+        if (int.parse(e.departure.substring(9, 11)) > 12 &&
+            int.parse(e.departure.substring(9, 11)) < 18) {
+          return e;
+        }
+      }).toList();
+    } else if (index == 3) {
+      return buses.map((e) {
+        if (int.parse(e.departure.substring(9, 11)) > 18) {
+          return e;
+        }
+      }).toList();
+    } else if (index == 4) {
+      return buses.map((e) {
+        if (e.ac == true) {
+          return e;
+        }
+      }).toList();
+    } else if (index == 5) {
+      return buses.map((e) {
+        if (e.ac == false) {
+          return e;
+        }
+      }).toList();
+    } else if (index == 8) {
+      return buses.map((e) {
+        if (int.parse(e.arival.substring(9, 11)) < 6) {
+          return e;
+        }
+      }).toList();
+    } else if (index == 9) {
+      return buses.map((e) {
+        if (int.parse(e.arival.substring(9, 11)) > 6 &&
+            int.parse(e.arival.substring(9, 11)) < 12) {
+          return e;
+        }
+      }).toList();
+    } else if (index == 10) {
+      return buses.map((e) {
+        if (int.parse(e.arival.substring(9, 11)) > 12 &&
+            int.parse(e.arival.substring(9, 11)) < 18) {
+          return e;
+        }
+      }).toList();
+    } else if (index == 11) {
+      return buses.map((e) {
+        if (int.parse(e.arival.substring(9, 11)) > 18) {
+          return e;
+        }
+      }).toList();
+    } else {
+      return [];
+    }
   }
 
   @override
@@ -92,12 +164,65 @@ class _ServiceBodyState extends State<ServiceBody>
                         : 'assets/line.png'))),
           ),
           SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-          ListView.builder(
-            physics: const NeverScrollableScrollPhysics(),
-            shrinkWrap: true,
-            itemCount: widget.data.availBuses.length,
-            itemBuilder: (BuildContext context, int index) =>
-                CustomContainer2(data: widget.data, ind: index),
+          Consumer<BusFilterProvider>(
+            builder: (context, busfilter, child) {
+              List result = [];
+              widget.data.availBuses.forEach((element) {
+                for (int i = 0; i < busfilter.filters.length; i++) {
+                  if (busfilter.filters[i] == true) {
+                    result.isNotEmpty
+                        ? result.removeWhere((element) => element == null)
+                        : null;
+                    var data = getFilteredlist(
+                        i, result.isNotEmpty ? result : widget.data.availBuses);
+
+                    result = [...data];
+                  }
+                }
+              });
+              result.removeWhere((element) => element == null);
+              return result.isNotEmpty
+                  ? ListView.builder(
+                      physics: const NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: result.length,
+                      itemBuilder: (BuildContext context, int index) =>
+                          CustomContainer2(
+                              data: Servicemodel(
+                                  availBuses: result,
+                                  from: widget.data.from,
+                                  to: widget.data.to,
+                                  dDate: widget.data.dDate,
+                                  rDate: widget.data.rDate),
+                              ind: index),
+                    )
+                  : Column(
+                      children: [
+                        busfilter.filters.any((element) => element == true)
+                            ? Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 10, vertical: 5),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    Text('No filtered data!',
+                                        style: GoogleFonts.montserrat(
+                                            fontSize: 12))
+                                  ],
+                                ),
+                              )
+                            : Container(),
+                        ListView.builder(
+                          physics: const NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemCount: widget.data.availBuses.length,
+                          itemBuilder: (BuildContext context, int index) =>
+                              CustomContainer2(data: widget.data, ind: index),
+                        ),
+                      ],
+                    );
+            },
           )
         ],
       ),
