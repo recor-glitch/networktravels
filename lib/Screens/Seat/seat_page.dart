@@ -77,6 +77,7 @@ class _SeatPageState extends State<SeatPage>
         child: Scaffold(
           backgroundColor: yellow,
           body: SafeArea(
+        bottom: platform? true : false,
               child: Stack(children: [
             Container(
               color: Colors.white,

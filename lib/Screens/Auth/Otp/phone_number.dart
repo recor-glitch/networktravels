@@ -12,6 +12,7 @@ class PhoneNumber extends StatelessWidget {
     return Scaffold(
       backgroundColor: yellow,
       body: SafeArea(
+        bottom: false,
           child: Stack(
         children: [
           Container(

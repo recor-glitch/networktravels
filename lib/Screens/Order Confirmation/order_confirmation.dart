@@ -16,6 +16,7 @@ class OrderConfirmation extends StatelessWidget {
     return Scaffold(
       backgroundColor: yellow,
       body: SafeArea(
+        bottom: platform? true : false,
         child: Stack(children: [
           Container(color: Colors.white),
           Container(
@@ -24,7 +25,7 @@ class OrderConfirmation extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 29, vertical: 30),
                 child: SingleChildScrollView(
                   child: Column(children: [
-                    SizedBox(height: MediaQuery.of(context).size.height * 0.1),
+                    platform? SizedBox(height: MediaQuery.of(context).size.height * 0.1) : SizedBox(height: MediaQuery.of(context).size.height * 0.07),
                     Container(
                         padding: EdgeInsets.all(20),
                         width: MediaQuery.of(context).size.width,

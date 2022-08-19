@@ -13,6 +13,7 @@ class Signup extends StatelessWidget {
     return Scaffold(
       backgroundColor: yellow,
       body: SafeArea(
+        bottom: false,
           child: Stack(children: [
         Container(
           decoration: BoxDecoration(

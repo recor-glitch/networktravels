@@ -39,6 +39,7 @@ class _PickupBodyState extends State<PickupBody>
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        platform? Container() : SizedBox(height: MediaQuery.of(context).size.height * 0.03),
         Container(
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(

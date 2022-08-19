@@ -17,6 +17,7 @@ class PassengerDetailPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: yellow,
       body: SafeArea(
+        bottom: platform? true : false,
           child: Stack(children: [
         Container(
           decoration: BoxDecoration(color: Colors.white),

@@ -32,6 +32,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
       drawer: CustomDrawer(scaffoldkey: scaffoldkey),
       backgroundColor: yellow,
       body: SafeArea(
+        bottom: platform? true : false,
           child: Stack(children: [
         Container(
           decoration: BoxDecoration(color: Colors.white),
@@ -43,9 +44,9 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
               child: SingleChildScrollView(
                 physics: BouncingScrollPhysics(),
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(
+                    children: [ SizedBox(
                           height: MediaQuery.of(context).size.height * 0.03),
                       Padding(
                           padding: EdgeInsets.symmetric(horizontal: 29),

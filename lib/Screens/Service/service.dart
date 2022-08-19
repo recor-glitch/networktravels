@@ -37,6 +37,7 @@ class _ServicePageState extends State<ServicePage>
     return Scaffold(
       backgroundColor: yellow,
       body: SafeArea(
+        bottom: platform? true : false,
           child: Stack(children: [
         Container(
           decoration: BoxDecoration(color: Colors.white),
