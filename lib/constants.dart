@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:io';
 
 const Color yellow = Color.fromRGBO(250, 208, 8, 1);
 const Color blacky = Color.fromRGBO(33, 29, 29, 1);
@@ -6,6 +7,7 @@ const Color green = Color.fromRGBO(0, 170, 99, 1);
 
 const String neccessaryfields = 'All the fields are required!';
 const String sameaddress = 'Departure and Arival cannot be the same.';
+final bool platform = Platform.isAndroid;
 
 const List spaceBusIndexes = [
   0,
