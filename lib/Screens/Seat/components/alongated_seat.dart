@@ -22,20 +22,29 @@ class AlongatedSeat extends StatelessWidget {
           height: 5,
           width: 20,
           decoration: BoxDecoration(
-              color: isred? Colors.red : isclicked ? green : Colors.white,
+              color: isred
+                  ? Colors.red
+                  : isclicked
+                      ? green
+                      : Colors.white,
               borderRadius: BorderRadius.circular(3),
               border: Border.all(color: blacky, width: 1)),
         );
     return InkWell(
       onTap: press,
       child: Container(
+        height: 75,
         width: 33.48,
         child: Stack(children: [
           Container(
             margin: EdgeInsets.all(3),
             alignment: Alignment.center,
             decoration: BoxDecoration(
-                color: isred? Colors.red : isclicked ? green : Colors.white,
+                color: isred
+                    ? Colors.red
+                    : isclicked
+                        ? green
+                        : Colors.white,
                 borderRadius: BorderRadius.circular(3),
                 border: Border.all(color: blacky, width: 1)),
             child: Center(
